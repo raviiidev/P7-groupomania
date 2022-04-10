@@ -15,7 +15,8 @@
     </v-app>
 </template>
 <script>
-
+// eslint-disable-next-line
+/* eslint-disable */
 import axios from "axios"
 export default {
     name : "Login",
@@ -36,15 +37,6 @@ export default {
             dataLoginS: "",
             msg: false,
             message: "",
-            
-            rules: {
-
-// Enlevez Un mot Erreur de nom du composant 
-'vue/multi-word-component-names': ['error', {
-
-ignores: ['Login']
-}]
-}
 
         }
     },

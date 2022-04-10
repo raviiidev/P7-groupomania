@@ -110,6 +110,8 @@
 </template>
 
 <script>
+// eslint-disable-next-line 
+/* eslint-disable */
 import TopHeader from "./TopHeader"
 import axios from "axios"
 export default {
