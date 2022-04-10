@@ -70,7 +70,6 @@ export default {
             items: [
                 { title: 'Accueil', icon: 'mdi-home', link: '/Accueil'  },
                 { title: 'Profil', icon: 'mdi-account', link: '/Accueil/Profil'},
-                { title: 'Forum', icon: 'mdi-forum', link: '/Accueil/Forum' },
             ],
         }
     },

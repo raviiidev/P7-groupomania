@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Auth from '../components/Auth.vue'
 import Accueil from '../components/Accueil.vue'
 import Profil from '../components/Accueil/Profil.vue'
-import Forum from '../components/Accueil/Forum.vue'
+
 import Post from '../components/Accueil/FormPost.vue'
 import Moderation from '../components/Accueil/Moderation.vue'
 
@@ -26,11 +26,7 @@ Vue.use(VueRouter)
     name: 'Profil',
     component: Profil
   },
-  {
-    path: '/Accueil/Forum',
-    name: 'Forum',
-    component: Forum
-  },
+  
   {
     path: '/Accueil/Forum/Post',
     name: 'Post',

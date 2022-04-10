@@ -11,6 +11,7 @@
                 <p>Prénom : {{ dataGet.firstName }}</p>
                 <p>Nom : {{ dataGet.lastName }}</p>
                 <p>E-mail : {{ dataGet.email }}</p>
+                
             </v-card-text>
 
             <v-card-actions class="d-flex justify-space-between">
@@ -26,7 +27,9 @@
                     <v-form ref="form" v-model="valid">
                         <v-text-field v-model="dataUp.firstName" :rules="firstNameRules" label="Prénom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
                         <v-text-field  v-model="dataUp.lastName" :rules="lastNameRules" label="Nom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
-                        <v-text-field v-model="dataUp.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required></v-text-field>
+                    
+                         <v-text-field v-model="dataUp.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required></v-text-field>
+                       
                     </v-form>
                 </v-card-text>
                 <v-card-actions>
@@ -74,11 +77,13 @@ export default {
             dataGet: { 
                 firstName: "",
                 lastName: "",
+             
                 email: ""
             },
             dataUp: {
                 firstName: "",
                 lastName: "",
+                
                 email: "",
             },
             dataUpS: "",
@@ -91,6 +96,7 @@ export default {
                 v => !!v || 'Renseignez votre nom',
                 v => /^[A-Za-z]+$/.test(v) || "Votre nom n'est pas valide",
             ],
+            
             emailRules: [
                 v => !!v || 'Renseignez votre e-mail',
                 v => /.+@.+\..+/.test(v) || "Votre e-mail n'est pas valide",
@@ -135,9 +141,11 @@ export default {
                 this.dataGet.email = profil[0].email;
                 this.dataGet.firstName = profil[0].firstName;
                 this.dataGet.lastName = profil[0].lastName;
+                this.dataGet.fonction = profil[0].fonction;
                 this.dataUp.email = profil[0].email;
                 this.dataUp.firstName = profil[0].firstName;
                 this.dataUp.lastName = profil[0].lastName;
+                 this.dataUp.fonction = profil[0].fonction;
             })
             .catch(error => {
                 console.log(error);
