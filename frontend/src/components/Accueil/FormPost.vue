@@ -26,19 +26,16 @@
             required
           ></v-textarea>
 
-
-<input
-@change="onFileSelected"
-type="file"
-id="image"
-name="image"
-accept="image/png, image/jpeg, image/gif, image/webp"
-/>
-<button @click="onUpload" class="publier btn btn-primary">
-Publier
-</button>
-
-
+          <input
+            @change="onFileSelected"
+            type="file"
+            id="image"
+            name="image"
+            accept="image/png, image/jpeg, image/gif, image/webp"
+          />
+          <button @click="onUpload" class="publier btn btn-primary">
+            Publier
+          </button>
         </v-form>
       </v-card-text>
 
@@ -98,10 +95,7 @@ export default {
           this.message = error
           this.msg = true
         })
-        
     },
-
-   
   },
 
   components: {
