@@ -1,5 +1,4 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const xss = require('xss-clean')
 const helmet = require('helmet')
 const app = express()
@@ -7,9 +6,10 @@ const routesPosts = require('./routes/routesPosts')
 const routesUsers = require('./routes/routesUsers')
 const routesMod = require('./routes/routesMod')
 
+app.use(express())
 app.use(xss())
 app.use(helmet())
-app.use(bodyParser.json())
+
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*')

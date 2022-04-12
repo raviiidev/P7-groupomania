@@ -4,6 +4,7 @@
     <div class="ml-12">
       <h1 class="ma-4">Bienvenue sur le Forum de Groupomania</h1>
 
+      <!--ajouter un post-->
       <router-view></router-view>
       <v-container>
         <v-btn class="ma-3" color="black white--text" @click="afficheForm">
@@ -23,6 +24,7 @@
               class="forum__post__manage"
               v-if="post.userId == userId"
             >
+              <!--modifier mon post-->
               <v-btn
                 class="forum__post__manage--btn"
                 color="black"
@@ -32,6 +34,7 @@
               >
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
+              <!--supprimer mon post-->
               <v-btn
                 class="forum__post__manage--btn"
                 color="black"
@@ -44,6 +47,7 @@
             </v-card-actions>
           </div>
 
+          <!--mon post-->
           <v-card-subtitle class="forum__post__name">
             Par {{ post.firstName }} {{ post.lastName }}, le {{ post.date }} à
             {{ post.time }}
@@ -52,7 +56,7 @@
           <v-card-text class="v-card-text black--text forum__post__content">
             {{ post.content }}
           </v-card-text>
-
+          <!--like-->
           <v-card-text class="py-0">
             <v-btn
               icon
@@ -62,11 +66,10 @@
               color="green"
               @click="likePost(post.id, post.likes)"
             >
-              <font-awesome-icon icon="fa-solid fa-heart" />
               <v-icon>mdi-thumb-up</v-icon>
               {{ post.likes }}
             </v-btn>
-
+            <!--bouton commentaires-->
             <v-btn
               text
               @click="afficheCom(post.id)"
@@ -76,36 +79,39 @@
               Voir les commentaires
             </v-btn>
           </v-card-text>
+          <!--Modifier mon post-->
+          <button>
+            <v-dialog v-model="dialogUpPost" max-width="500px">
+              <v-card>
+                <v-card-title>Modifier mon post</v-card-title>
+                <v-card-text>
+                  <v-form ref="form" v-model="valid">
+                    <v-text-field
+                      v-model="dataPost.title"
+                      color="black"
+                      :rules="titleRules"
+                      :counter="50"
+                      label="Titre"
+                    ></v-text-field>
+                    <v-textarea
+                      v-model="dataPost.content"
+                      color="black"
+                      :rules="contentRules"
+                      label="Commentaire"
+                    ></v-textarea>
+                  </v-form>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn text @click="dialogUpPost = false">Annuler</v-btn>
+                  <v-btn text :disabled="!valid" @click="updatePost()">
+                    Valider
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </button>
 
-          <v-dialog v-model="dialogUpPost" max-width="500px">
-            <v-card>
-              <v-card-title>Modifier mon post</v-card-title>
-              <v-card-text>
-                <v-form ref="form" v-model="valid">
-                  <v-text-field
-                    v-model="dataPost.title"
-                    color="black"
-                    :rules="titleRules"
-                    :counter="50"
-                    label="Titre"
-                  ></v-text-field>
-                  <v-textarea
-                    v-model="dataPost.content"
-                    color="black"
-                    :rules="contentRules"
-                    label="Commentaire"
-                  ></v-textarea>
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn text @click="dialogUpPost = false">Annuler</v-btn>
-                <v-btn text :disabled="!valid" @click="updatePost()">
-                  Valider
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-
+          <!--afficher les commentaires-->
           <div class="forum__comments" v-if="postId === post.id">
             <v-card
               class="forum__comments--ind my-1 mx-2 pa-3"
@@ -146,7 +152,7 @@
                 </v-card>
               </v-dialog>
             </v-card>
-
+            <!--Commenter le post-->
             <v-btn
               v-if="!afficheFrmCm"
               color="black white--text"
@@ -290,7 +296,7 @@ export default {
         .then((response) => {
           let rep = JSON.parse(response.data)
           console.log(rep.message)
-          window.location.assign('http://localhost:8080/Accueil/forum')
+          window.location.assign('http://localhost:8080/Accueil')
         })
         .catch((error) => {
           console.log(error)
@@ -304,7 +310,7 @@ export default {
         .then((response) => {
           let rep = JSON.parse(response.data)
           console.log(rep.message)
-          window.location.assign('http://localhost:8080/Accueil/forum')
+          window.location.assign('http://localhost:8080/Accueil')
         })
         .catch((error) => {
           console.log(error)
@@ -338,7 +344,7 @@ export default {
           this.dataPost.userId = ''
           this.dataPost.id = ''
           this.dialogUpPost = false
-          window.location.assign('http://localhost:8080/Accueil/forum')
+          window.location.assign('http://localhost:8080/Accueil')
         })
         .catch((error) => {
           console.log(error)
@@ -370,7 +376,7 @@ export default {
           this.dataCom.userId = ''
           this.afficheFrmCm = false
           this.dialogUpCom = false
-          window.location.assign('http://localhost:8080/Accueil/forum')
+          window.location.assign('http://localhost:8080/Accueil')
         })
         .catch((error) => {
           console.log(error)

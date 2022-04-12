@@ -44,15 +44,15 @@ export default {
             valid: true,
             firstNameRules: [
                 v => !!v || 'Renseignez votre prénom',
-                v => /^[A-Za-z]+$/.test(v) || "Votre prénom n'est pas valide",
+                v => /^[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿ-]+$/.test(v) || "Votre prénom n'est pas valide",
             ],
             lastNameRules: [
                 v => !!v || 'Renseignez votre nom',
-                v => /^[A-Za-z]+$/.test(v) || "Votre nom n'est pas valide",
+                v => /^[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿ-]+$/.test(v) || "Votre nom n'est pas valide",
             ],
             emailRules: [
                 v => !!v || 'Renseignez votre e-mail',
-                v => /.+@.+\..+/.test(v) || "Votre e-mail n'est pas valide",
+                v => /.+@groupomania+\..+/.test(v) || "Votre e-mail n'est pas valide",
             ],
             passRules: [
                 v => !!v || 'Renseignez votre mot de passe',

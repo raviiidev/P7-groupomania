@@ -44,6 +44,7 @@ class PostsModels {
             })
         });
     }
+    
     deletePost(sqlInserts1, sqlInserts2){
         let sql1 = 'SELECT * FROM posts where id = ?';
         sql1 = mysql.format(sql1, sqlInserts1);
@@ -65,6 +66,7 @@ class PostsModels {
         })
     }
 
+    
 
     getComments(sqlInserts){
         let sql = "SELECT comments.comContent, DATE_FORMAT(comments.date, '%d/%m/%Y à %H:%i:%s') AS date, comments.id, comments.userId, users.firstName, users.lastName FROM comments JOIN users on comments.userId = users.id WHERE postId = ? ORDER BY date";

@@ -2,7 +2,7 @@
     <div id="profil" class="d-flex justify-center">
         <top-header/>
         <v-card class="ma-12" raised>
-            <v-img class="logo" src="../../assets/logo.png" width="100px" contain></v-img>
+            <v-img class="logo" src="../../assets/icon.png" width="100px" contain></v-img>
             <v-card-title class="my-3 justify-center">
                 <h1>Mon profil</h1>
             </v-card-title>
@@ -90,16 +90,16 @@ export default {
             valid: true,
             firstNameRules: [
                 v => !!v || 'Renseignez votre prénom',
-                v => /^[A-Za-z]+$/.test(v) || "Votre prénom n'est pas valide",
+                v => /^[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿ-]+$/.test(v) || "Votre prénom n'est pas valide",
             ],
             lastNameRules: [
                 v => !!v || 'Renseignez votre nom',
-                v => /^[A-Za-z]+$/.test(v) || "Votre nom n'est pas valide",
+                v => /^[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿ-]+$/.test(v) || "Votre nom n'est pas valide",
             ],
             
             emailRules: [
                 v => !!v || 'Renseignez votre e-mail',
-                v => /.+@.+\..+/.test(v) || "Votre e-mail n'est pas valide",
+                v => /.+@groupomania+\..+/.test(v) || "Votre e-mail n'est pas valide",
             ],
         }
     },

@@ -47,15 +47,13 @@ export default {
 
 <style lang="scss">
 #auth {
-  background: no-repeat center top/50%
-    url('../assets/icon-left-font.png');
+  background: no-repeat center top/50% url('../assets/icon-left-font.png');
   display: flex;
   flex-direction: row;
-  
 }
+
 .auth {
   &__boutons {
-
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -68,5 +66,4 @@ export default {
     }
   }
 }
-
 </style>
