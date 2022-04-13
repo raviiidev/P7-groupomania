@@ -2,6 +2,7 @@ const express = require('express')
 const xss = require('xss-clean')
 const helmet = require('helmet')
 const bodyParser = require('body-parser');
+/*const path = require('path');*/
 const app = express()
 const routesPosts = require('./routes/routesPosts')
 const routesUsers = require('./routes/routesUsers')
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
   next()
 })
 
+/*app.use('/images', express.static(path.join(__dirname, 'images')))*/
 app.use('/api/posts', routesPosts)
 app.use('/api/auth', routesUsers)
 app.use('/api/moderation', routesMod)
