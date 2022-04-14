@@ -1,18 +1,21 @@
 const mysql = require('mysql')
-console.log('Connexion à la base de données...')
-
-/*const app = require('./app')
-const dotenv = require('dotenv').config()*/
+const app = require('./app')
+const dotenv = require('dotenv').config()
 
 let connectdb = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'Kookie02!',
-  database: 'groupomania_database',
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  port: 3306,
 })
+
 connectdb.connect(function (err) {
-  if (err) throw err
-  console.log('Connecté!')
+  if (err) {
+    console.error('error connecting : ' + err.stack)
+    return
+  }
+  console.log('Connected as Id!' + connectdb.threadId)
 })
 
 module.exports = connectdb

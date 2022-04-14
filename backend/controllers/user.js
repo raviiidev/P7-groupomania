@@ -7,6 +7,7 @@ const UserModels = require('../Models/UserModels.js')
 let userModels = new UserModels()
 
 exports.signup = (req, res, next) => {
+  console.log(req.body);
 let email = req.body.email;
 let password = req.body.password;
 let firstName = req.body.firstName;
