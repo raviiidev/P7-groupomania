@@ -46,7 +46,7 @@
               </v-btn>
             </v-card-actions>
           </div>
-
+          <img v-if="post.img" :src="post.img" alt="" class="imgPost" />
           <!--mon post-->
           <v-card-subtitle class="forum__post__name">
             Par {{ post.firstName }} {{ post.lastName }}, le {{ post.date }} à

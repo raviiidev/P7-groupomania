@@ -8,7 +8,7 @@
       </v-card-title>
 
       <v-card-text>
-        <v-form ref="form" class="ma-3" v-model="valid">
+        <v-form ref="form" class="ma-3" v-model="valid" method="post">
           <v-text-field
             v-model="dataPost.title"
             color="black"
@@ -25,6 +25,13 @@
             label="Message"
             required
           ></v-textarea>
+          <input
+            @change="onFileSelected"
+            type="file"
+            id="image"
+            name="image"
+            accept="image/png, image/jpeg, image/gif, image/webp"
+          />
         </v-form>
       </v-card-text>
 
@@ -64,7 +71,9 @@ export default {
   },
   methods: {
     sendPost() {
-      this.dataPostS = JSON.stringify(this.dataPost)
+      this.dataPostS = new FormData()
+      this.dataPostS.append('data', JSON.stringify(this.dataPost))
+      this.dataPostS.append('img', this.img)
       axios
         .post('http://localhost:3000/api/posts/', this.dataPostS, {
           headers: {
@@ -84,6 +93,10 @@ export default {
           this.message = error
           this.msg = true
         })
+    },
+    onFileSelected(event) {
+      this.img = event.target.files[0]
+      console.log(this.img)
     },
   },
   components: {
