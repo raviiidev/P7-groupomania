@@ -12,6 +12,7 @@
             autofocus
             required
           ></v-text-field>
+
           <v-text-field
             v-model="dataSignup.lastName"
             :rules="lastNameRules"
@@ -20,6 +21,7 @@
             color="black"
             required
           ></v-text-field>
+
           <v-text-field
             v-model="dataSignup.email"
             :rules="emailRules"
@@ -28,6 +30,7 @@
             color="black"
             required
           ></v-text-field>
+
           <v-text-field
             v-model="dataSignup.password"
             :rules="passRules"
@@ -48,22 +51,25 @@
                   class="success"
                   v-bind="attrs"
                   v-on="on"
+                  @click="sendSignup()"
                 >
                   Confirmer
                 </v-btn>
               </template>
+
               <v-card>
                 <v-card-title class="text-center">
                   Votre compte a été créé !
+
                   <br />
+
                   Veuillez vous connecter pour accéder à l'intranet.
                 </v-card-title>
                 <v-divider></v-divider>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn @click="sendSignup()" class="success">
-                    Se connecter
-                  </v-btn>
+
+                  <v-btn class="success">Se connecter</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -80,54 +86,67 @@
 import axios from 'axios'
 export default {
   name: 'Signup',
+
   data() {
     return {
       valid: true,
+
       firstNameRules: [
         (v) => !!v || 'Renseignez votre prénom',
         (v) =>
           /^[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿ-]+$/.test(v) ||
           "Votre prénom n'est pas valide",
       ],
+
       lastNameRules: [
         (v) => !!v || 'Renseignez votre nom',
         (v) =>
           /^[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿ-]+$/.test(v) ||
           "Votre nom n'est pas valide",
       ],
+
       emailRules: [
         (v) => !!v || 'Renseignez votre e-mail',
         (v) => /.+@groupomania+\..+/.test(v) || "Votre e-mail n'est pas valide",
       ],
+
       passRules: [
         (v) => !!v || 'Renseignez votre mot de passe',
         (v) => (v && v.length >= 5) || '5 caractères minimun',
         (v) => /(?=.*[A-Z])/.test(v) || 'Au moins une majuscule',
         (v) => /(?=.*\d)/.test(v) || 'Au moins un chiffre',
       ],
+
       dataSignup: {
         firstName: '',
         lastName: '',
         email: '',
         password: '',
       },
+
       dataSignupS: '',
       form: true,
       msg: false,
       message: '',
+      dialog: false,
     }
   },
+
   methods: {
     sendSignup() {
-      this.dataSignupS = JSON.stringify(this.dataSignup)
+      this.dataSignupS = this.dataSignup
+
       axios
         .post('http://localhost:3000/api/auth/signup', this.dataSignupS, {
           headers: { 'Content-Type': 'application/json' },
         })
         .then((response) => {
           let sign = JSON.parse(response.data)
+
           this.message = sign.message
+
           this.form = false
+
           this.msg = true
         })
         .catch((error) => {

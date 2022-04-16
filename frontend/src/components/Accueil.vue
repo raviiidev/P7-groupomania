@@ -458,6 +458,9 @@ export default {
 h1 {
   text-align: center;
 }
+.imgPost {
+  max-width: 300px;
+}
 .forum {
   &__comments {
     &--ind {

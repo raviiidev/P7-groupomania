@@ -6,11 +6,11 @@ const jwt = require('jsonwebtoken')
 class UserModels {
   constructor() {}
   signup(sqlInserts) {
-    let sql = 'INSERT INTO users VALUES(NULL, ?, ?, ?, NULL, ?)'
+    let sql = 'INSERT INTO users VALUES(NULL, ?, ?, ?, ?,NULL)'
     sql = mysql.format(sql, sqlInserts)
     return new Promise((resolve, reject) => {
       connectdb.query(sql, function (err, result) {
-        if (err) reject({ error: "Erreur dans l'inscription" })
+        if (err) reject({ error: "Erreur dans l'inscription"+ err })
         resolve({ message: 'Nouvel utilisateur !' })
       })
     })

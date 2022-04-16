@@ -77,7 +77,6 @@ export default {
       axios
         .post('http://localhost:3000/api/posts/', this.dataPostS, {
           headers: {
-            'Content-Type': 'application/json',
             Authorization: 'Bearer ' + localStorage.token,
           },
         })
