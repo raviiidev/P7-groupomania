@@ -6,3 +6,4 @@ const publicPath = process.env.NODE_ENV === 'production' ? '/P7-groupomania/' : 
 module.exports = {
   publicPath: publicPath,
   }
+
