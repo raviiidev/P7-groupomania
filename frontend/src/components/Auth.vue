@@ -47,7 +47,7 @@ export default {
 
 <style lang="scss">
 #auth {
-  background: no-repeat center top/50% url('../assets/icon-left-font.png');
+  background: no-repeat center top/50% url('../assets/logo.png');
   display: flex;
   flex-direction: row;
 }
